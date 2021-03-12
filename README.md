@@ -18,3 +18,30 @@
 2. the webhooks supported by redash support the curve support nails, enterprise WeChat
 3. redash webhook implementation notification code:  [Redash Webhook](https://github.com/getredash/redash/blob/d0793c4ba8b28fcd0c40dd91453f8b5e19f9eb2d/redash /destinations/webhook.py#L28)
 4. This project builds the webhook api by conforming to the redash webhook method, and then routes it to nail or enterprise WeChat
+
+
+
+### Quick start
+
+1. cd /opt && git clone https://github.com/lishulongVI/redash-alert.git
+2. cd redash-alert && pip3 install -r requirements.txt
+3. python3 -m redash_alert.main 或者使用supervisor 启动，见supervisor-redash-alert.ini
+
+
+
+### Reddish
+
+```
+http://0.0.0.0:9998/webhook/dingding/{token}/
+userName:redash
+password:redash_2021
+
+
+{
+	"alert":{
+		"description":"{\"msgtype\":\"text\",\"text\":{\"content\":\"1\"}}"
+	}
+}
+
+```
+
