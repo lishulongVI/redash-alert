@@ -7,6 +7,7 @@ from starlette.responses import JSONResponse
 from starlette.status import HTTP_401_UNAUTHORIZED, HTTP_500_INTERNAL_SERVER_ERROR
 
 from redash_alert.dingding_webhook import DingDingWebhook
+from redash_alert.feishu_webhook import FeishuWorkWebhook
 from redash_alert.wechat_webhook import WechatWorkWebhook
 
 tags_metadata = [
@@ -36,6 +37,7 @@ class WayEnum(str, Enum):
     """
     WEI_XIN = 'weixin'
     DING_DING = 'dingding'
+    FEI_SHU = 'feishu'
 
 
 @app.post('/webhook/{send_way}/{token}/', include_in_schema=True)
@@ -59,6 +61,8 @@ async def webhook(
             data = json.loads(description)
             if send_way == WayEnum.DING_DING:
                 DingDingWebhook(access_token=token).send(_json=data)
+            elif send_way == WayEnum.FEI_SHU:
+                FeishuWorkWebhook(access_token=token).send(_json=data)
             else:
                 WechatWorkWebhook(access_token=token).send(_json=data)
         except Exception as e:

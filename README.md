@@ -31,7 +31,7 @@
 ![image-20210312173155997](image-20210312173155997.png)
 
 
-
+### 钉钉 & 企业微信
 ```
 http://0.0.0.0:9998/webhook/dingding/{token}/
 userName:redash
@@ -97,3 +97,40 @@ password:redash_2021
 }
 ```
 
+### 飞书格式
+
+```
+{
+    "msg_type": "text",
+    "content": {
+        "text": "request example"
+    }
+}
+
+
+{
+    "msg_type": "post",
+    "content": {
+        "post": {
+            "zh_cn": {
+                "title": "项目更新通知",
+                "content": [
+                    [
+                        {
+                            "tag": "text",
+                            "text": "项目有更新: "
+                        },
+                        {
+                            "tag": "a",
+                            "text": "请查看",
+                            "href": "http://www.example.com/"
+                        }
+                    ]
+                ]
+            }
+        }
+    }
+}
+
+
+```
